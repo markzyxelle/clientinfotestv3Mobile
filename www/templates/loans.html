@@ -1,0 +1,25 @@
+<ion-view view-title="Loans" name="loans-view">
+  <ion-nav-buttons side="right">
+    <button class="button icon-left ion-log-out button-stable" ng-click="logout()">Logout</button>
+  </ion-nav-buttons> 
+  <ion-content class="padding">
+  	<ion-list>
+  		<ion-item ng-repeat='item in loans' class="loan">
+        <div class="item item-divider item-text-wrap">
+          <span class="badge badge-energized">LOAN CYCLE {{ item.cycle_number }}</span><br />
+          <span>{{item.loan_type}}</span>
+          
+        </div>
+        <!-- <div class="item item-text-wrap"> -->
+        <p>
+          DATA AS OF : <strong>{{item.cutoff_date}}</strong> <br />
+          PRINCIPAL AMOUNT : <strong>{{item.principal_amount}}</strong> <br />
+          INTEREST AMOUNT : <strong>{{item.principal_amount}}</strong> <br />
+          PRINCIPAL PAID : <strong>{{item.principal_paid}}</strong> <br />
+          INTEREST PAID : <strong>{{item.principal_paid}}</strong> <br />
+        </p>
+        <!-- </div> -->
+  		</ion-item>
+  	</ion-list>
+  </ion-content>
+</ion-view>

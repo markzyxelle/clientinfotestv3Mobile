@@ -1,0 +1,44 @@
+/* Empty. Add your own CSS if you like */
+/*.item-divider{
+	border-bottom: 1px;
+	border-bottom: 1px;
+	border-style: solid;
+    border-color: #ff0000;
+}*/
+/*.item-text-wrap{
+	height: 55px;
+}*/
+/*.loan{
+	border-top: 1px;
+	border-style: solid;
+    border-color: #ff0000;
+}*/
+
+.loan{
+  /*padding: 0 !important;*/
+	border-top: 10px;
+	border-style: solid;
+	border-top-color: green;
+	margin-top: 10px;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.loan .item-divider{
+	border: 0 !important;
+	font-size: 1.5em;
+	background-color: white;
+}
+
+.loan .item-divider .badge{
+	margin-top: -10px;
+	margin-right: -25px;
+}
+
+.loan p{
+	padding-left:20px;
+	padding-top: 10px;
+}
+/*.color{
+	height:10px;
+	background-color: green;
+}*/

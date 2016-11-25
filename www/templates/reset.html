@@ -1,0 +1,16 @@
+<ion-view view-title="Password Reset" name="reset-view" cache-view="false">
+  <ion-nav-buttons side="right">
+    <button class="button icon-left ion-log-out button-stable" ng-click="logout()">Logout</button>
+  </ion-nav-buttons> 
+  <ion-content class="padding">
+  	<div class="list list-inset">
+		<label class="item item-input">
+		  <input type="password" placeholder="Password" ng-model="data.password">
+		</label>
+		<label class="item item-input">
+		  <input type="password" placeholder="Confirm Password" ng-model="data.confirmPassword">
+		</label>
+	</div>
+	<button class="button button-block button-positive" ng-click="changePassword(data)">Change Password</button>
+  </ion-content>
+</ion-view>
