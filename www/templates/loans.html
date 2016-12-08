@@ -3,20 +3,67 @@
     <button class="button icon-left ion-log-out button-stable" ng-click="logout()">Logout</button>
   </ion-nav-buttons> 
   <ion-content class="padding">
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="error-div" ng-show="err">
+      <i class="error-ion ion-alert-circled" title="asdasdasd"></i><br />
+      <span class="error-span">Please pull to refresh</span>
+    </div>
   	<ion-list>
-  		<ion-item ng-repeat='item in loans' class="loan">
+  		<ion-item ng-repeat='item in loans' class="detail-list">
         <div class="item item-divider item-text-wrap">
-          <span class="badge badge-energized">LOAN CYCLE {{ item.cycle_number }}</span><br />
-          <span>{{item.loan_type}}</span>
-          
+          <!-- <span class="badge badge-energized">LOAN CYCLE {{ item.cycle_number }}</span><br /> -->
+          <span class="wrap">Data as of : {{item.cutoff_date | date:'MMM. dd, yyyy'}}</span><br /><br />
+          <span class="wrap">{{item.loan_type}}-C{{item.cycle_number}}</span>
         </div>
         <!-- <div class="item item-text-wrap"> -->
         <p>
-          DATA AS OF : <strong>{{item.cutoff_date}}</strong> <br />
+          <span class="row">
+            <span class="col col-28">PRINCIPAL BALANCE</span> 
+            <span class="col wrap">: <strong>{{item.principal_amount - item.principal_paid | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">INTEREST BALANCE</span> 
+            <span class="col wrap">: <strong>{{item.interest_amount - item.interest_paid | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">TOTAL LOAN BALANCE</span> 
+            <span class="col wrap">: <strong>{{(item.principal_amount - item.principal_paid) + (item.interest_amount - item.interest_paid) | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">PRINCIPAL AMOUNT</span> 
+            <span class="col wrap">: <strong>{{item.principal_amount | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">INTEREST AMOUNT</span> 
+            <span class="col wrap">: <strong>{{item.interest_amount | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">TOTAL LOAN AMOUNT</span> 
+            <span class="col wrap">: <strong>{{item.principal_amount + item.interest_amount | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">START OF PAYMENT</span> 
+            <span class="col wrap">: <strong>{{item.start_payment_date | date:'MMM. dd, yyyy'}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">MATURITY DATE</span> 
+            <span class="col wrap">: <strong>{{item.maturity_date | date:'MMM. dd, yyyy'}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">AMORTIZATIONS LEFT</span> 
+            <span class="col wrap">: <strong>{{item.amortization_left | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">PAYMENT FREQUENCY</span> 
+            <span class="col wrap">: <strong>{{item.payment_frequency | uppercase}}</strong></span>
+          </span>
+          
+          <!-- DATA AS OF : <strong>{{item.cutoff_date}}</strong> <br />
           PRINCIPAL AMOUNT : <strong>{{item.principal_amount}}</strong> <br />
-          INTEREST AMOUNT : <strong>{{item.principal_amount}}</strong> <br />
-          PRINCIPAL PAID : <strong>{{item.principal_paid}}</strong> <br />
-          INTEREST PAID : <strong>{{item.principal_paid}}</strong> <br />
+          INTEREST AMOUNT : <strong>{{item.interest_amount}}</strong> <br />
+          OUTSTANDING BALANCE (PRINCIPAL) : <strong>{{item.principal_amount - item.principal_paid}}</strong> <br />
+          OUTSTANDING BALANCE (INTEREST) : <strong>{{item.interest_amount - item.interest_paid}}</strong> <br /> -->
         </p>
         <!-- </div> -->
   		</ion-item>

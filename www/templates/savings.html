@@ -3,6 +3,29 @@
     <button class="button icon-left ion-log-out button-stable" ng-click="logout()">Logout</button>
   </ion-nav-buttons> 
   <ion-content class="padding">
-  	Savings here!
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="error-div" ng-show="err">
+      <i class="error-ion ion-alert-circled" title="asdasdasd"></i><br />
+      <span class="error-span">Please pull to refresh</span>
+    </div>
+  	<ion-list>
+  		<ion-item ng-repeat='item in savings' class="detail-list">
+        <div class="item item-divider item-text-wrap">
+          <span class="wrap">Data as of : {{item.cutoff_date | date:'MMM. dd, yyyy'}}</span><br /><br />
+          <span class="wrap">{{item.savings_type}}</span>
+          
+        </div>
+        <!-- <div class="item item-text-wrap"> -->
+        <p>
+          <span class="row">
+            <span class="col col-28">AVAILABLE BALANCE</span> 
+            <span class="col wrap">: <strong>{{item.amount | number : fractionSize}}</strong></span>
+          </span>
+          <!-- AMOUNT : <strong>{{item.amount}}</strong> <br /> -->
+        </p>
+        <!-- </div> -->
+  		</ion-item>
+  	</ion-list>
   </ion-content>
 </ion-view>

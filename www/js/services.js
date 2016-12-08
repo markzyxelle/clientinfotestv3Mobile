@@ -32,8 +32,8 @@ angular.module('starter')
   var login = function(name, pw) {
     return $q(function(resolve, reject) {
       // $http.get('http://localhost:8000/notApproved');
-      // $http.post('http://localhost:8000/authenticate', {"username" : name, "password" : pw})
-      $http.post('http://clientinfotest.herokuapp.com/authenticate', {"username" : name, "password" : pw})
+      $http.post('http://localhost:8000/authenticate', {"username" : name, "password" : pw})
+      // $http.post('http://clientinfotest.herokuapp.com/authenticate', {"username" : name, "password" : pw})
         .then(function successCallback(response) {
           storeUserCredentials(response.data.token);
           $state.go('tabs.dashboard');
@@ -103,8 +103,8 @@ angular.module('starter')
   var changePassword = function(password, confirmPassword) {
     return $q(function(resolve, reject) {
       // $http.get('http://localhost:8000/notApproved');
-      // $http.post('http://localhost:8000/changePassword', {"password" : password, "confirmPassword" : confirmPassword})
-      $http.post('http://clientinfotest.herokuapp.com/changePassword', {"password" : password, "confirmPassword" : confirmPassword})
+      $http.post('http://localhost:8000/changePassword', {"password" : password, "confirmPassword" : confirmPassword})
+      // $http.post('http://clientinfotest.herokuapp.com/changePassword', {"password" : password, "confirmPassword" : confirmPassword})
         .then(function successCallback(response) {
           $state.go('tabs.dashboard');
           resolve('Changed Password Successfully.');

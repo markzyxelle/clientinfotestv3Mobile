@@ -14,7 +14,7 @@
     border-color: #ff0000;
 }*/
 
-.loan{
+.detail-list{
   /*padding: 0 !important;*/
 	border-top: 10px;
 	border-style: solid;
@@ -23,18 +23,18 @@
 	box-shadow: 10px 10px 5px #888888;
 }
 
-.loan .item-divider{
+.detail-list .item-divider{
 	border: 0 !important;
 	font-size: 1.5em;
 	background-color: white;
 }
 
-.loan .item-divider .badge{
+.detail-list .item-divider .badge{
 	margin-top: -10px;
 	margin-right: -25px;
 }
 
-.loan p{
+.detail-list p{
 	padding-left:20px;
 	padding-top: 10px;
 }
@@ -42,3 +42,36 @@
 	height:10px;
 	background-color: green;
 }*/
+.row{
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.wrap{
+	white-space: normal;
+	word-break: break-all;
+}
+
+.error-ion{
+	font-size: 50px;
+	text-align: center;
+	width:100%;
+}
+
+.error-div{
+	position: relative;
+	text-align: center;
+}
+
+.error-span{
+	font-size: 15px;
+	text-align: center;
+	width:100%;
+}
+
+.item-divider .wrap{
+	font-size: .9em;
+}
+

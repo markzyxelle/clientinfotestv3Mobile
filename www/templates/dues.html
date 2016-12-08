@@ -1,0 +1,72 @@
+<ion-view view-title="Payables" name="dues-view">
+  <ion-nav-buttons side="right">
+    <button class="button icon-left ion-log-out button-stable" ng-click="logout()">Logout</button>
+  </ion-nav-buttons> 
+  <ion-content class="padding">
+    <ion-refresher on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="error-div" ng-show="err">
+      <i class="error-ion ion-alert-circled"></i><br />
+      <span class="error-span">Please pull to refresh</span>
+    </div>
+  	<ion-list>
+  		<ion-item ng-repeat='item in dues' class="detail-list">
+        <div class="item item-divider item-text-wrap">
+          <!-- <span class="badge badge-energized">LOAN CYCLE {{ item.cycle_number }}</span><br /> -->
+          <span class="wrap">Data as of : {{item.cutoff_date | date:'MMM. dd, yyyy'}}</span><br /><br />
+          <span class="wrap">{{item.loan_type}}-C{{item.cycle_number}}</span>
+          
+        </div>
+        <!-- <div class="item item-text-wrap"> -->
+        <p>
+          <span class="row">
+            <span class="col col-28">DUE PRINCIPAL</span> 
+            <span class="col wrap">: <strong>{{item.due_principal_amount | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">DUE INTEREST</span> 
+            <span class="col wrap">: <strong>{{item.due_interest_amount | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">DUE DATE</span> 
+            <span class="col wrap">: <strong>{{item.due_date | date:'MMM. dd, yyyy'}}</strong></span>
+          </span>
+          <!-- <span class="row">
+            <span class="col col-28">PRINCIPAL ARREARS</span> 
+            <span class="col wrap">: <strong>{{item.principal_arrears | number : fractionSize}}</strong></span>
+          </span>
+          <span class="row">
+            <span class="col col-28">INTEREST ARREARS</span> 
+            <span class="col wrap">: <strong>{{item.interest_arrears | number : fractionSize}}</strong></span>
+          </span> -->
+
+          <!-- PRINCIPAL : <strong>{{item.due_principal_amount}}</strong> <br />
+          INTEREST : <strong>{{item.due_interest_amount}}</strong> <br />
+          DUE DATE : <strong>{{item.due_date}}</strong> <br />
+          PRINCIPAL ARREARS : <strong>{{item.principal_arrears}}</strong> <br />
+          INTEREST ARREARS : <strong>{{item.interest_arrears}}</strong> <br /> -->
+        </p>
+        <br/>
+        <div ng-if="item.savings" class="item item-divider item-text-wrap">
+          <span>Savings Due</span>
+        </div>
+        <p>
+          <span ng-if="item.savings" ng-repeat="(name, amount) in item.savings">
+            <span class="row">
+              <span class="col col-30 wrap">{{name | uppercase}}</span> 
+              <span class="col col-18 wrap">: <strong>{{amount | number : fractionSize}}</strong></span>
+            </span>
+          </span>  
+          <span class="row">
+            <span class="col col-28">TOTAL AMOUNT DUE</span> 
+            <span class="col wrap">: <strong>{{getTotal(item.savings) + item.due_principal_amount + item.due_interest_amount}}</strong></span>
+          </span>
+         <!--  </span> 
+            {{name | uppercase}} DUE : <strong>{{amount}}</strong><br />
+          </span> -->
+        </p>
+        <!-- </div> -->
+  		</ion-item>
+  	</ion-list>
+  </ion-content>
+</ion-view>

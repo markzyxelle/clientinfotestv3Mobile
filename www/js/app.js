@@ -66,6 +66,15 @@ angular.module('starter', ['ionic'])
         controller: 'SavingsCtrl'
       }
     }
+  })
+  .state('tabs.dues', {
+    url: 'tabs/dues',
+    views: {
+      'dues-tab': {
+        templateUrl: 'templates/dues.html',
+        controller: 'DuesCtrl'
+      }
+    }
   });
   
   $urlRouterProvider.otherwise(function ($injector, $location) {
@@ -75,13 +84,7 @@ angular.module('starter', ['ionic'])
   });
 })
 
-.config(['$ionicConfigProvider', function($ionicConfigProvider) {
-
-    $ionicConfigProvider.tabs.position('bottom'); // other values: top
-
-}])
-
-.run(function ($rootScope, $state, AuthService, AUTH_EVENTS, $ionicPopup) {
+.run(function ($rootScope, $state, AuthService, AUTH_EVENTS, $ionicPopup, $ionicHistory, $location, $timeout) {
   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState, fromParams) { 
     if (localStorage.getItem("JWT_TOKEN") === null) {
       if (next.name !== 'login') {
@@ -89,8 +92,13 @@ angular.module('starter', ['ionic'])
           title: 'Session Lost!',
           template: 'Sorry, You have to login again.'
         });
+        $state.go("login");
+        $timeout(function () {
+            $ionicHistory.clearCache();
+            $ionicHistory.clearHistory();
+            // $log.debug('clearing cache')
+        },300)
         event.preventDefault();
-        $state.go('login');
       }
     }
 
